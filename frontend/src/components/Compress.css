@@ -1,0 +1,384 @@
+html {
+    font-size: 10px;
+    box-sizing: border-box;
+}
+  
+*, *::after, *::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+  
+html, body {
+    width: 100%;
+}
+  
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    width: 100%;
+    background-color: hsl(40, 87%, 69%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+}
+  
+.app__images-div {
+    margin-top: 1rem;
+    width: 85%;
+    height: 50vh;
+    position: relative;
+    background-color: hsl(40, 100%, 69%);
+}
+  
+.app__original-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+  
+.app__compressed-image-frame {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    border-left: black 2px solid;
+    overflow: hidden;
+}
+  
+.app__compressed-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+  
+.app__image-info {
+    display: none;
+    background-color: #0000003d;
+    color: white;
+    font-family: monospace;
+    border-radius: 0.4rem;
+    padding: 0.3rem;
+    position: absolute;
+    left: 0rem;
+    bottom: 0rem;
+}
+  
+.app__images-div.show .app__image-info {
+    display: initial;
+}
+  
+.app__compressed-image-frame__resize-button {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    width: 4rem;
+    height: 4rem;
+    padding: 0.5rem;
+    color: black;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: rgb(255, 255, 255);
+    display: none;
+    cursor: pointer;
+}
+  
+.app__images-div.show .app__compressed-image-frame__resize-button {
+    display: initial;
+}
+  
+.app__images-div.show .app__compressed-image-frame {
+    display: initial;
+}
+  
+.app__compressed-image__download-button {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    color: white;
+    font-size: 1.7rem;
+    text-decoration: none;
+    background-color: #7b68eeb5;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+}
+  
+.app__images-div.show .app__original-image::before {
+    content: "Original";
+    top: 0.5rem;
+    left: 0.5rem;
+}
+  
+.app__compressed-image-frame::before {
+    content: "Compressed";
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 1;
+}
+  
+.app__images-div.show .app__original-image::before,
+.app__compressed-image-frame::before {
+    color: white;
+    position: absolute;
+    font-size: 2rem;
+    font-weight: bolder;
+    text-shadow: 2px 2px 5px black;
+}
+  
+label[for="app__file-input"] {
+    background-color: white;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    width: 14rem;
+    text-align: center;
+    margin: 1rem auto;
+    border-radius: 0.5rem;
+}
+  
+.app__range-input {
+    width: 50%;
+    height: 1.5rem;
+    margin: 1rem;
+    background-color: hsl(40, 50%, 56%);
+    border-radius: 1rem;
+    position: relative;
+    cursor: pointer;
+}
+  
+.app__range-input::before {
+    content: "Quality";
+    font-size: 1.5rem;
+    position: absolute;
+    transform: translateX(-110%);
+}
+  
+.app__range-input__button {
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+}
+  
+input[type="number"], input[type="text"] {
+    border-radius: 0.3rem;
+    margin: 0.4rem auto;
+    border: none;
+    height: 2.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+}
+  
+input:focus {
+    outline: none;
+}
+  
+label {
+    font-size: 1.5rem;
+}
+  
+.app__grouped-inputs {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+  
+.app__more-inputs-button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #e91e63;
+    text-decoration: underline;
+    cursor: pointer;
+}
+  
+.app__more-inputs-div {
+    width: 100%;
+    display: none;
+}
+  
+.app__more-inputs-div.show {
+    display: initial;
+}
+  
+.app__credits {
+    margin: 3rem auto 1rem auto;
+    font-size: 1.7rem;
+    color: white;
+    font-weight: bold;
+}
+  
+.app__credits > span {
+    color: red;
+}
+  
+@media(max-width: 480px) {
+    input[type="text"] {
+        width: 90%;
+    }
+    .app__grouped-inputs {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+  
+.compress-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+  
+.compress-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+  
+.image-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+  
+.original-image,
+.compressed-image-frame {
+    width: 48%;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
+.original-image h2,
+.compressed-image-frame h2 {
+    margin-top: 0;
+    color: #444;
+}
+  
+.file-input {
+    margin-bottom: 15px;
+}
+  
+.image-info {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+  
+.image-info p {
+    margin: 5px 0;
+}
+  
+.compressed-image {
+    width: 100%;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+  
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+  
+.control-group {
+    width: 48%;
+    margin-bottom: 15px;
+}
+  
+.control-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+  
+.range-input,
+.select-input,
+.number-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+  
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+  
+.action-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.compress-button {
+    background-color: #4CAF50;
+    color: white;
+}
+  
+.compress-button:hover {
+    background-color: #45a049;
+}
+  
+.edit-button {
+    background-color: #2196F3;
+    color: white;
+}
+  
+.edit-button:hover {
+    background-color: #1e87db;
+}
+  
+.download-button {
+    background-color: #ff9800;
+    color: white;
+}
+  
+.download-button:hover {
+    background-color: #e68a00;
+}
+  
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+  
+.progress {
+    height: 100%;
+    background-color: #76c7c0;
+    transition: width 0.4s ease;
+}

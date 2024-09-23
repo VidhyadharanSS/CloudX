@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.48cee3c5.css",
+    "main.js": "/static/js/main.2270b64a.js",
+    "static/js/453.dfd76d67.chunk.js": "/static/js/453.dfd76d67.chunk.js",
+    "static/media/spinning-background.gif": "/static/media/spinning-background.3e36da8b6cc0506d4e5a.gif",
+    "static/media/1.png": "/static/media/1.d5fb8387e53c9de46671.png",
+    "index.html": "/index.html",
+    "main.48cee3c5.css.map": "/static/css/main.48cee3c5.css.map",
+    "main.2270b64a.js.map": "/static/js/main.2270b64a.js.map",
+    "453.dfd76d67.chunk.js.map": "/static/js/453.dfd76d67.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48cee3c5.css",
+    "static/js/main.2270b64a.js"
+  ]
+}
